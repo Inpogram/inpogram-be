@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  inpogram:
+    container_name: "inpogram_db"
+    image: mysql:8.1
+    restart: always
+    environment:
+      MYSQL_DATABASE: "inpogram"
+      MYSQL_USER: "haibui"
+      MYSQL_PASSWORD: "12345678"
+      MYSQL_ROOT_PASSWORD: "12345678"
+    ports:
+      - "3306:3306"
+    volumes:
+      - inpogram:/var/lib/mysql # Volume for MySQL data storage
+      - ./init.sql:/docker-entrypoint-initdb.d/mysql-init.sql # Mount the SQL file
+
+volumes:
+  inpogram:
