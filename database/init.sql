@@ -8,7 +8,7 @@ USE inpogram;
 CREATE TABLE IF NOT EXISTS post (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    banner_image_name VARCHAR(255) NOT NULL,
+    featured_image_name VARCHAR(255) NOT NULL,
     content MEDIUMTEXT NOT NULL,
     created_at DATETIME NOT NULL
 );
@@ -73,7 +73,7 @@ INSERT INTO Role (name) VALUES
     ('USER'),
     ('MEMBER');
 
-INSERT INTO tag (id, name, usage_count) VALUES
+INSERT INTO tag (name, usage_count) VALUES
     ('Technology', 0), 
     ('Java', 0), 
     ('Spring Boot', 0), 
