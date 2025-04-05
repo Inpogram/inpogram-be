@@ -1,6 +1,6 @@
 package com.haibui.inpogram.controllers;
 
-import com.haibui.inpogram.exceptions.EmptyBannerImageException;
+import com.haibui.inpogram.exceptions.EmptyFeaturedImageException;
 import com.haibui.inpogram.exceptions.PostNotFoundException;
 import com.haibui.inpogram.models.dtos.PostRequest;
 import com.haibui.inpogram.models.entities.Post;
@@ -33,8 +33,8 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Post> createPost(@ModelAttribute @Valid PostRequest postRequest) throws Exception {
-        if (postRequest.bannerImage().isEmpty()) {
-            throw new EmptyBannerImageException("Banner image must not be empty");
+        if (postRequest.featuredImage().isEmpty()) {
+            throw new EmptyFeaturedImageException("Featured image must not be empty");
         }
         Post createdPost = postService.createPost(postRequest);
         return ResponseEntity.ok(createdPost);

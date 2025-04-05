@@ -41,6 +41,8 @@ s3:
     name: ${S3_REGION}
   bucket:
     name: ${S3_BUCKET}
+  path:
+    featured_images: ${S3_PATH_FEATURED_IMAGES}
 
 logging:
   level:
