@@ -8,9 +8,11 @@ USE inpogram;
 CREATE TABLE IF NOT EXISTS post (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL,
     featured_image_name VARCHAR(255) NOT NULL,
     content MEDIUMTEXT NOT NULL,
-    created_at DATETIME NOT NULL
+    created_at DATETIME NOT NULL,
+    UNIQUE INDEX uk_slug (slug) 
 );
 
 CREATE TABLE IF NOT EXISTS tag (
@@ -68,7 +70,7 @@ INSERT INTO `user` (username, email) VALUES
     ('test', 'test@example.com'),
     ('user', 'user@example.com');
 
-INSERT INTO Role (name) VALUES
+INSERT INTO role (name) VALUES
     ('ADMIN'),
     ('USER'),
     ('MEMBER');

@@ -36,8 +36,11 @@ public class Post {
 
     private String title;
 
-    @Column(name = "banner_image_name")
-    private String bannerImageName;
+    @Column(unique = true)
+    private String slug;
+
+    @Column(name = "featured_image_name")
+    private String featuredImageName;
 
     private String content;
 
@@ -47,7 +50,6 @@ public class Post {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
-
 
     @ManyToMany
     @JoinTable(

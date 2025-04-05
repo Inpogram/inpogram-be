@@ -20,16 +20,19 @@ public class S3Service {
     @Value("${s3.bucket.name}")
     private String bucketName;
 
+    @Value("${s3.path.featured-images}")
+    private String featuredImagesPath;
+
     @Autowired
     private AmazonS3 s3Client;
 
-
     public String uploadFile(MultipartFile file) {
         File fileObj = convertMultiPartFileToFile(file);
-        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-        log.info(bucketName, fileName, fileObj);
+        String fileName = file.getOriginalFilename() + "_" + System.currentTimeMillis();
+        String filePathName = featuredImagesPath + fileName;
+        log.info("Uploading file to S3: bucket={}, key={}", bucketName, filePathName);
 
-        s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
+        s3Client.putObject(new PutObjectRequest(bucketName, filePathName, fileObj));
         fileObj.delete();
         return fileName;
     }

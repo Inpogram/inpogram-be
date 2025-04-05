@@ -9,7 +9,7 @@ import java.util.Set;
 public record PostRequest(@NotBlank(message = "Title must not be blank")
                           @Size(min = 2, max = 100, message = "Title must be between 2 and 100 characters")
                           String title,
-                          MultipartFile bannerImage,
+                          MultipartFile featuredImage,
                           @NotBlank(message = "Content must not be blank")
                           @Size(min = 100, message = "Content must consist of at least 100 words")
                           String content,

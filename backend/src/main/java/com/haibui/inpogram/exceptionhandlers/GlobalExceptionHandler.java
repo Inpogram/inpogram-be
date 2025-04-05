@@ -2,7 +2,7 @@ package com.haibui.inpogram.exceptionhandlers;
 
 import com.haibui.inpogram.exceptions.AccountNotFoundException;
 import com.haibui.inpogram.exceptions.BadRequestException;
-import com.haibui.inpogram.exceptions.EmptyBannerImageException;
+import com.haibui.inpogram.exceptions.EmptyFeaturedImageException;
 import com.haibui.inpogram.exceptions.PostTitleAlreadyExistsException;
 import com.haibui.inpogram.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -50,8 +50,8 @@ public class GlobalExceptionHandler {
         return problemDetail;
     }
 
-    @ExceptionHandler(EmptyBannerImageException.class)
-    public ProblemDetail handleEmptyBannerImageException(EmptyBannerImageException ex) {
+    @ExceptionHandler(EmptyFeaturedImageException.class)
+    public ProblemDetail handleEmptyFeaturedImageException(EmptyFeaturedImageException ex) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setProperty("message", ex.getLocalizedMessage());
         return problemDetail;
