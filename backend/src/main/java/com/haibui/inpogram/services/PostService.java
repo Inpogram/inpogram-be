@@ -2,7 +2,6 @@ package com.haibui.inpogram.services;
 
 import com.haibui.inpogram.exceptions.FileTooLargeException;
 import com.haibui.inpogram.exceptions.InvalidFileExtensionException;
-import com.haibui.inpogram.exceptions.PostTitleAlreadyExistsException;
 import com.haibui.inpogram.models.dtos.PostRequest;
 import com.haibui.inpogram.models.entities.Post;
 import com.haibui.inpogram.models.entities.Tag;
@@ -24,13 +23,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class PostService {
     private static final long MAX_FEATURED_IMAGE_SIZE = 3 * 1024 * 1024; // 3MB
-
     private static final Set<String> VALID_FEATURED_IMAGE_EXTENSIONS = Set.of(".png", ".jpg", ".jpeg");
 
     private final PostRepository postRepo;
-
     private final TagRepository tagRepo;
-
     private final S3Service s3Service;
 
     public List<Post> findAll() {
@@ -39,11 +35,6 @@ public class PostService {
 
     @Transactional
     public Post createPost(PostRequest postRequest) throws Exception {
-        Post post = postRepo.findOneByTitle(postRequest.title());
-        if (post != null) {
-            throw new PostTitleAlreadyExistsException("Post title already exists");
-        }
-
         // Create a slug out of title
         String title = postRequest.title();
         String baseSlug = slugify(title);
@@ -103,8 +94,8 @@ public class PostService {
         }
     }
 
-    public Post findByTitle(String title) {
-        return postRepo.findOneByTitle(title);
+    public Post findBySlug(String slug) {
+        return postRepo.findOneBySlug(slug);
     }
 
     private String slugify(String input) {

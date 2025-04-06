@@ -8,5 +8,5 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findAll();
 
-    Post findOneByTitle(String title);
+    Post findOneBySlug(String slug);
 }

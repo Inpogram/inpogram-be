@@ -40,14 +40,12 @@ public class PostController {
         return ResponseEntity.ok(createdPost);
     }
 
-    @GetMapping("/{title}")
-    public ResponseEntity<Post> findByTitle(@PathVariable String title) {
-        Post post = postService.findByTitle(title);
-
+    @GetMapping("/{slug}")
+    public ResponseEntity<Post> findBySlug(@PathVariable String slug) {
+        Post post = postService.findBySlug(slug);
         if (post == null) {
-            throw new PostNotFoundException(String.format("Post with title '%s' not found", title));
+            throw new PostNotFoundException(String.format("Post with slug '%s' not found", slug));
         }
-
         return ResponseEntity.ok(post);
     }
 }
