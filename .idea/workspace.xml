@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="094c3308-92c4-4b3e-85e0-49a08e9f17cb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/backend/.github/workflows/ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+    <list default="true" id="79b24beb-f6fb-4e1f-9299-6ef4330559a3" name="Changes" comment="feature/unit-tests-ci: add ci file">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,55 +17,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2volslqPm3zZCgkYbqUMiHE7tXA" />
-  <component name="ProjectViewState">
-    <option name="autoscrollFromSource" value="true" />
-    <option name="autoscrollToSource" value="true" />
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="openDirectoriesWithSingleClick" value="true" />
-    <option name="showLibraryContents" value="true" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/haibui/Documents/haibui/projects/inpogram/inpogram-be",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "vue.rearranger.settings.migration": "true"
+    "last_opened_file_path": "/home/haibui/Documents/haibui/projects/inpogram/inpogram-be"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="094c3308-92c4-4b3e-85e0-49a08e9f17cb" name="Changes" comment="" />
-      <created>1744819516556</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1744819516556</updated>
-      <workItem from="1744819518398" duration="53000" />
-    </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feature/unit-tests-ci: add ci file" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/unit-tests-ci: add ci file" />
   </component>
 </project>
