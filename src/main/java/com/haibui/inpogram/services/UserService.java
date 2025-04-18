@@ -25,7 +25,7 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return new UserDTO(
-                user.getId(),
+                (int) user.getId(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getProvider(),

@@ -9,6 +9,8 @@ import com.haibui.inpogram.models.repositories.PostRepository;
 import com.haibui.inpogram.models.repositories.TagRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,8 +31,21 @@ public class PostService {
     private final TagRepository tagRepo;
     private final S3Service s3Service;
 
-    public List<Post> findAll() {
-        return postRepo.findAll();
+    public List<Post> getPosts(Long cursor, int limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+        return postRepo.findPosts(cursor, pageable);
+    }
+
+    public Post getBySlug(String slug) {
+        return postRepo.findOneBySlug(slug);
+    }
+
+    private String slugify(String input) {
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
+                .replaceAll("[^\\p{ASCII}]", "")
+                .toLowerCase()
+                .trim()
+                .replaceAll("\\s+", "-");
     }
 
     @Transactional
@@ -92,17 +107,5 @@ public class PostService {
         if (featuredImageExtension == null || !VALID_FEATURED_IMAGE_EXTENSIONS.contains(featuredImageExtension.toLowerCase())) {
             throw new InvalidFileExtensionException("The system only supports .png, .jpg, .jpeg extension for the featured image");
         }
-    }
-
-    public Post findBySlug(String slug) {
-        return postRepo.findOneBySlug(slug);
-    }
-
-    private String slugify(String input) {
-        return Normalizer.normalize(input, Normalizer.Form.NFD)
-                .replaceAll("[^\\p{ASCII}]", "")
-                .toLowerCase()
-                .trim()
-                .replaceAll("\\s+", "-");
     }
 }

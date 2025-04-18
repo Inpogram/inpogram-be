@@ -22,7 +22,7 @@ class PostServiceTest {
     private PostService postService;
 
     @Test
-    void findBySlug_ReturnsPost_WhenPostExists() {
+    void getBySlug_ReturnsPost_WhenPostExists() {
         // Arrange
         String slug = "test-slug";
         Post post = new Post();
@@ -30,7 +30,7 @@ class PostServiceTest {
         when(postRepo.findOneBySlug(slug)).thenReturn(post);
 
         // Act
-        Post result = postService.findBySlug(slug);
+        Post result = postService.getBySlug(slug);
 
         // Assert
         assertEquals(post, result);
@@ -38,13 +38,13 @@ class PostServiceTest {
     }
 
     @Test
-    void findBySlug_ReturnsNull_WhenPostDoesNotExist() {
+    void getBySlug_ReturnsNull_WhenPostDoesNotExist() {
         // Arrange
         String slug = "non-existent-slug";
         when(postRepo.findOneBySlug(slug)).thenReturn(null);
 
         // Act
-        Post result = postService.findBySlug(slug);
+        Post result = postService.getBySlug(slug);
 
         // Assert
         assertNull(result);

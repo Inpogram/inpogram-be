@@ -6,7 +6,7 @@ USE inpogram;
 
 -- Create tables
 CREATE TABLE IF NOT EXISTS post (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL,
     featured_image_name VARCHAR(255) NOT NULL,
@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS post (
 );
 
 CREATE TABLE IF NOT EXISTS tag (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE,
-    usage_count INT NOT NULL
+    usage_count BIGINT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `user` (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     profile_image_url VARCHAR(255),
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 );
 
 CREATE TABLE IF NOT EXISTS `like` (
-    user_id INT,
-    post_id INT,
+    user_id BIGINT,
+    post_id BIGINT,
     liked_at DATETIME NOT NULL,
     PRIMARY KEY (user_id, post_id),
     CONSTRAINT fk_like_user_id
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS role (
 
 -- Create junction tables
 CREATE TABLE IF NOT EXISTS post_tag (
-    post_id INT,
-    tag_id INT,
+    post_id BIGINT,
+    tag_id BIGINT,
     PRIMARY KEY (post_id, tag_id),
     CONSTRAINT fk_post_tag_post_id
         FOREIGN KEY (post_id) REFERENCES post (id)

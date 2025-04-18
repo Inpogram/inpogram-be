@@ -19,7 +19,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     private final Collection<? extends GrantedAuthority> authorities;
 
     @Getter
-    private final int id;
+    private final long id;
 
     @Getter
     private final String providerUsername;
@@ -42,7 +42,7 @@ public class UserPrincipal implements OAuth2User, UserDetails {
     private Map<String, Object> attributes;
 
     public UserPrincipal(
-            int id,
+            long id,
             String providerUsername,
             String email,
             String password,
