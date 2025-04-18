@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/posts")
@@ -26,9 +29,25 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<?> findAll() {
-        List<Post> results = postService.findAll();
-        return ResponseEntity.ok(results);
+    public ResponseEntity<?> getPosts(@RequestParam(required = false) Long cursor,
+                                      @RequestParam(defaultValue = "10") int limit) {
+        List<Post> posts = postService.getPosts(cursor, limit);
+        Long nextCursor = posts.isEmpty() ? null : posts.get(posts.size() - 1).getId();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("posts", posts);
+        response.put("nextCursor", nextCursor);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{slug}")
+    public ResponseEntity<Post> getBySlug(@PathVariable String slug) {
+        Post post = postService.getBySlug(slug);
+        if (post == null) {
+            throw new PostNotFoundException(String.format("Post with slug '%s' not found", slug));
+        }
+        return ResponseEntity.ok(post);
     }
 
     @PostMapping
@@ -38,14 +57,5 @@ public class PostController {
         }
         Post createdPost = postService.createPost(postRequest);
         return ResponseEntity.ok(createdPost);
-    }
-
-    @GetMapping("/{slug}")
-    public ResponseEntity<Post> findBySlug(@PathVariable String slug) {
-        Post post = postService.findBySlug(slug);
-        if (post == null) {
-            throw new PostNotFoundException(String.format("Post with slug '%s' not found", slug));
-        }
-        return ResponseEntity.ok(post);
     }
 }
