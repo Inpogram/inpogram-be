@@ -3,7 +3,7 @@ package com.haibui.inpogram.exceptionhandlers;
 import com.haibui.inpogram.exceptions.AccountNotFoundException;
 import com.haibui.inpogram.exceptions.BadRequestException;
 import com.haibui.inpogram.exceptions.EmptyFeaturedImageException;
-import com.haibui.inpogram.exceptions.PostTitleAlreadyExistsException;
+import com.haibui.inpogram.exceptions.PostNotFoundException;
 import com.haibui.inpogram.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -43,9 +43,9 @@ public class GlobalExceptionHandler {
         return problemDetail;
     }
 
-    @ExceptionHandler(PostTitleAlreadyExistsException.class)
-    public ProblemDetail handlePostTitleAlreadyExists(PostTitleAlreadyExistsException ex) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(PostNotFoundException.class)
+    public ProblemDetail handlePostNotFound(PostNotFoundException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
         problemDetail.setProperty("message", ex.getLocalizedMessage());
         return problemDetail;
     }
