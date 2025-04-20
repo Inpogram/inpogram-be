@@ -58,7 +58,7 @@ public class SecurityConfiguration {
                         .authenticationEntryPoint((request, response, authException) -> {
                             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                             response.setContentType("application/json");
-                            response.getWriter().write("{\"error\": \"Authentication required\"}");
+                            response.getWriter().write("{\"message\": \"Authentication required\"}");
                         })
                 );
 
