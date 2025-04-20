@@ -27,7 +27,7 @@ import java.util.Set;
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotBlank(message = "Name cannot be blank")
     @Column(unique = true)
@@ -38,5 +38,5 @@ public class Tag {
     private Set<Post> posts;
 
     @Column(name = "usage_count")
-    private int usageCount;
+    private long usageCount;
 }
